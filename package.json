@@ -1,0 +1,25 @@
+{
+  "name": "js_demo",
+  "version": "1.0.0",
+  "description": "一个现代化的待办事项清单应用",
+  "main": "index.html",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.8"
+  },
+  "keywords": ["todo", "react", "javascript", "html", "css", "web-app"],
+  "author": "",
+  "license": "ISC"
+}

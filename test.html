@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-input {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>简单测试</h1>
+        <div class="test-input">
+            <input type="text" id="testInput" placeholder="输入测试任务...">
+            <button onclick="addTestTodo()">添加</button>
+        </div>
+        <div id="testList"></div>
+    </div>
+
+    <script>
+        let testTodos = [];
+        
+        function addTestTodo() {
+            const input = document.getElementById('testInput');
+            const text = input.value.trim();
+            
+            if (text) {
+                const todo = {
+                    id: Date.now(),
+                    text: text,
+                    completed: false
+                };
+                testTodos.push(todo);
+                input.value = '';
+                renderTestTodos();
+            }
+        }
+        
+        function toggleTestTodo(id) {
+            const todo = testTodos.find(t => t.id === id);
+            if (todo) {
+                todo.completed = !todo.completed;
+                renderTestTodos();
+            }
+        }
+        
+        function renderTestTodos() {
+            const list = document.getElementById('testList');
+            list.innerHTML = testTodos.map(todo => `
+                <div class="todo-item ${todo.completed ? 'completed' : ''}">
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''} 
+                           onchange="toggleTestTodo(${todo.id})">
+                    <span>${todo.text}</span>
+                </div>
+            `).join('');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('测试页面加载完成');
+        });
+    </script>
+</body>
+</html> 
